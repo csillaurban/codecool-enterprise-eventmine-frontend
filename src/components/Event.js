@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 
 class Event extends Component {
@@ -7,15 +7,31 @@ class Event extends Component {
     render() {
         return (
             <MDBCol>
-                <MDBCard style={{ width: "22rem" }}>
+                <MDBCard className="w-50 p-3 mb-4 h-25" style={{ width: "22rem" }}>
                     <MDBCardBody>
-                        <MDBCardTitle>{this.props.event.name}</MDBCardTitle>
+                        <MDBCardTitle className="text-left">{this.props.event.name}</MDBCardTitle>
                         <MDBCardText>
-                            Some quick example text to build on the card title and make
-                            up the bulk of the card&apos;s content.
+                            <MDBTable borderless responsive className=".ml-3">
+                                <MDBTableHead>
+                                    <tr>
+                                        <th>Location</th>
+                                        <th>Date</th>
+                                        <th>Remaining Tickets</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </MDBTableHead>
+                                <MDBTableBody>
+                                    <tr>
+                                        <td>{this.props.event.location}</td>
+                                        <td>{this.props.event.date.slice(0, 10)}</td>
+                                        <td>{this.props.event.numOfRemainingTickets}</td>
+                                        <td>{this.props.event.price} Ft</td>
+                                    </tr>
+                                </MDBTableBody>
+                            </MDBTable>
                         </MDBCardText>
-                        <MDBBtn href="#">MDBBtn</MDBBtn>
                     </MDBCardBody>
+                    <MDBBtn className="align-middle" color="success" href="#">Buy</MDBBtn>
                 </MDBCard>
             </MDBCol>
         );
