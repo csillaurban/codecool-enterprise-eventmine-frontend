@@ -16,7 +16,7 @@ class EventList extends Component {
 
 
     render() {
-        return ();
+        return this.state.events.map((event) => <Event key={event.eventId} event={event} />)
     }
 }
 
