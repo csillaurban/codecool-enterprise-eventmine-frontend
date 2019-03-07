@@ -6,7 +6,7 @@ class Header extends Component {
     render() {
         return (
             <div className="Header">
-                <ImageComp/>
+                <ImageComp sendKeyword={this.props.sendKeyword}/>
             </div>
         );
     }
