@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import { MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
 
 
 class Event extends Component {
 
     render() {
         return (
-            <MDBCol>
-                <MDBCard className="w-50 p-3 mb-4 h-25" style={{ width: "22rem" }}>
+            <MDBCol size="8">
+                <MDBCard className="w-50 p-1 mb-4 h-25" style={{ width: "22rem"}}>
                     <MDBCardBody>
                         <MDBCardTitle className="text-left">{this.props.event.name}</MDBCardTitle>
                         <MDBCardText>

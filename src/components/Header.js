@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Col, Row} from "react-bootstrap";
-import SearchField from "./SearchField";
 import ImageComp from "./ImageComp";
 
 

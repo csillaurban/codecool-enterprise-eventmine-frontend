@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {MDBCol, MDBIcon} from 'mdbreact';
+import {MDBCol} from 'mdbreact';
 
 class SearchField extends Component{
     render() {
