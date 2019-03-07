@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import image from '/home/csilla/codecool/Advanced/eventmine-frontend/src/header.jpg';
-import {Col, Image, Row} from 'react-bootstrap';
 import SearchField from "./SearchField";
+import {MDBContainer, MDBCol, MDBRow, MDBView, MDBMask} from "mdbreact";
+import image from '/home/csilla/codecool/Advanced/eventmine-frontend/src/header.jpg';
 
 class ImageComp extends Component {
     render() {
         return (
-            <div className="ImageComp">
-                <Image src={image} fluid />
-                    <Col md={{ span: 6, offset: 3 }} className="search">
-                        <SearchField/>
-                    </Col>
-            </div>
+            <MDBContainer>
+                <MDBRow >
+                    <MDBCol>
+                        <MDBView>
+                            <img
+                                src={image}
+                                className="img-fluid"
+                                alt=""
+                            />
+                            <MDBMask className="flex-center" overlay="teal-slight">
+                                <SearchField/>
+                            </MDBMask>
+                        </MDBView>
+                    </MDBCol>
+                </MDBRow>
+            </MDBContainer>
         );
     }
 }
-
-const style = {
-    backgroundImage: image
-}
-
-
 
 
 export default ImageComp;
