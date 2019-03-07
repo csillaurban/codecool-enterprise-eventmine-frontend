@@ -1,0 +1,11 @@
+
+
+div.container{
+    max-width: 300px;
+    max-height: 250px;
+}
+
+img.d-block{
+    max-width: 500px;
+    max-height: 450px;
+}

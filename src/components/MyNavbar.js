@@ -38,7 +38,7 @@ class MyNavbar extends Component {
                                 <NavLink href="https://github.com/reactstrap/reactstrap">Concerts</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/components/">Museums</NavLink>
+                                <NavLink href="/components/">Festivals</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/components/">Theatre</NavLink>
