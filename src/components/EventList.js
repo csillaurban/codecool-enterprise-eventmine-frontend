@@ -16,7 +16,11 @@ class EventList extends Component {
 
 
     render() {
-        return this.state.events.map((event) => <Event key={event.eventId} event={event} />)
+        if(this.props.result.length === 0) {
+            return this.state.events.map((event) => <Event key={event.eventId} event={event}/>)
+        } else {
+            return this.props.result.map((event) => <Event key={event.eventId} event={event}/>)
+        }
     }
 }
 

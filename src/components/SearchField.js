@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {MDBCol} from 'mdbreact';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 
 class SearchField extends Component{
     state = {
         keyword: ''
-    }
+    };
 
     onChange = (e) => this.setState({[e.target.name]: e.target.value});
 
@@ -14,7 +13,7 @@ class SearchField extends Component{
         e.preventDefault();
         this.props.sendKeyword(this.state.keyword);
         this.setState({keyword: ''});
-    }
+    };
 
     render() {
         return (
@@ -30,8 +29,6 @@ class SearchField extends Component{
                         onChange={this.onChange}
                     />
                 </form>
-                <Router>
-                </Router>
             </MDBCol>
         );
     }
