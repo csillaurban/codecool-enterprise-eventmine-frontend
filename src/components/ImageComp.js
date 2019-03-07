@@ -16,7 +16,7 @@ class ImageComp extends Component {
                                 alt=""
                             />
                             <MDBMask className="flex-center" overlay="teal-slight">
-                                <SearchField/>
+                                <SearchField sendKeyword={this.props.sendKeyword}/>
                             </MDBMask>
                         </MDBView>
                     </MDBCol>
