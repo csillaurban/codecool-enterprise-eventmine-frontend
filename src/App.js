@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import './App.css';
 import Header from "./components/Header";
+import EventList from "./components/EventList";
 import SearchResult from "./components/pages/SearchResult";
 import axios from 'axios';
 
 class App extends Component {
+
+    render() {
+        return (
+          <div className="App">
+            <Header/>
+            <EventList/>
+          </div>
+        );
+    }
   state = {
     events: [],
     resultsFound: false
@@ -43,7 +53,7 @@ class App extends Component {
                 <Header sendKeyword={this.sendKeyword}/>
                 <Route path="/" render={props => (
                     <React.Fragment>
-
+                        <EventList/>
                     </React.Fragment>
                 )}/>
 
