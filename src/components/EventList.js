@@ -5,7 +5,7 @@ import Event from "./Event";
 class EventList extends Component {
 
     state = {
-        events:[]
+        events: []
     };
 
 
@@ -17,9 +17,9 @@ class EventList extends Component {
 
     render() {
         if(this.props.result.length === 0) {
-            return this.state.events.map((event) => <Event key={event.eventId} event={event}/>)
+            return this.state.events.map((event) => <Event key={event.id} event={event}/>)
         } else {
-            return this.props.result.map((event) => <Event key={event.eventId} event={event}/>)
+            return this.props.result.map((event) => <Event key={event.id} event={event}/>)
         }
     }
 }

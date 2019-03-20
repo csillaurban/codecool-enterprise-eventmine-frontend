@@ -24,7 +24,7 @@ class Event extends Component {
                                     <tr>
                                         <td>{this.props.event.location}</td>
                                         <td>{this.props.event.date.slice(0, 10)}</td>
-                                        <td>{this.props.event.numOfRemainingTickets}</td>
+                                        <td>{this.props.event.numOfAvailableTickets}</td>
                                         <td>{this.props.event.price} Ft</td>
                                     </tr>
                                 </MDBTableBody>
