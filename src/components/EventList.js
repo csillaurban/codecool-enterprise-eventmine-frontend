@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import Event from "./Event";
+import EventCard from "./EventCard";
 
 class EventList extends Component {
 
@@ -17,9 +17,9 @@ class EventList extends Component {
 
     render() {
         if(this.props.result.length === 0) {
-            return this.state.events.map((event) => <Event key={event.id} event={event}/>)
+            return this.state.events.map((event) => <EventCard key={event.id} event={event}/>)
         } else {
-            return this.props.result.map((event) => <Event key={event.id} event={event}/>)
+            return this.props.result.map((event) => <EventCard key={event.id} event={event}/>)
         }
     }
 }
