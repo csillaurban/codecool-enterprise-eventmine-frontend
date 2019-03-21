@@ -18,9 +18,9 @@ class EventList extends Component {
     render() {
         console.log(this.props.result);
         if(this.props.result.length === 0) {
-            return this.state.events.map((event) => <EventCard key={event.id} event={event}/>)
+            return this.state.events.map((event) => <EventCard getEvent={this.props.getEvent} key={event.id} event={event}/>)
         } else {
-            return this.props.result.map((event) => <EventCard key={event.id} event={event}/>)
+            return this.props.result.map((event) => <EventCard getEvent={this.props.getEvent} key={event.id} event={event}/>)
         }
     }
 }
