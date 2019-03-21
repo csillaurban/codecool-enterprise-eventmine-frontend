@@ -4,43 +4,40 @@ import Header from "./components/Header";
 import EventList from "./components/EventList";
 import axios from 'axios';
 import MyNavbar from "./components/MyNavbar";
-import {MDBCol, MDBRow, MDBContainer} from 'mdbreact';
+import {BrowserRouter, Route} from "react-router-dom";
+import Event from "./components/Event";
+
 
 
 class App extends Component {
 
   state = {
-    events: [],
+      result: [],
+      event : {}
   };
 
   sendKeyword = (keyword) => {
-    axios.get(`http://localhost:8080/events/search/${keyword}`
-    ).then(res => this.setState({events: res.data}))
+    axios.get(`http://localhost:8080/events/search/${keyword}`)
+        .then(res => this.setState({result: res.data}))
+  };
+
+  getEvent = (event) => {
+      this.state.event = event;
+      console.log(this.state.event);
   };
 
   render() {
       return (
+          <BrowserRouter>
             <div className="App">
               <div className="container">
-                  <MDBContainer>
-                      <MDBRow>
-                          <MDBCol>
                   <MyNavbar/>
-                          </MDBCol>
-                      </MDBRow>
-                      <MDBRow>
-                          <MDBCol>
                   <Header sendKeyword={this.sendKeyword}/>
-                          </MDBCol>
-                      </MDBRow>
-                      <MDBRow>
-                          <MDBCol>
-                  <EventList result={this.state.events}/>
-                          </MDBCol>
-                      </MDBRow>
-                  </MDBContainer>
+                  <Route exact path='/' render={(props) => <EventList {...props} result={this.state.result} getEvent={this.getEvent} />}/>
+                  <Route path='/:id' render={(props) => <Event {...props} event={this.state.event} />}/>
               </div>
             </div>
+          </BrowserRouter>
       )
   }
 }
