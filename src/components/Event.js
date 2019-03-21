@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import { MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
-
+import { MDBMedia, MDBIcon, MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
+import './Card.css';
 
 class Event extends Component {
 
     render() {
         return (
-            <MDBCol size="8">
-                <MDBCard className="w-50 p-1 mb-4 h-25" style={{ width: "22rem"}}>
+            <MDBCol >
+                <MDBCard className="ticket">
                     <MDBCardBody>
                         <MDBCardTitle className="text-left">{this.props.event.name}</MDBCardTitle>
                         <MDBCardText>
-                            <MDBTable borderless responsive className=".ml-3">
+                            <MDBTable borderless responsive >
                                 <MDBTableHead>
                                     <tr>
                                         <th>Location</th>
