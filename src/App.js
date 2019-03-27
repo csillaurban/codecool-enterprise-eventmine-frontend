@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from "./components/Header";
 import Events from "./containers/Events/Events";
 import axios from 'axios';
-import MyNavbar from "./components/MyNavbar";
+import MyNavbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from "react-router-dom";
-import Event from "./components/Event";
+import Event from "./components/Event/Event";
 import EventMine from "./containers/EventMine/EventMine";
 
 

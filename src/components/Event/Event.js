@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Card.css';
+import '../EventCard/Card.css';
 
 class Event extends Component {
 

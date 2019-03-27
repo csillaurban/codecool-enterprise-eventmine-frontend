@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {MDBCol} from 'mdbreact';
-
+import {TextInput} from 'react-materialize';
+import './Search.css';
 
 class SearchField extends Component{
     state = {
         keyword: ''
     };
 
-    onChange = (e) => this.setState({[e.target.name]: e.target.value});
+    onChange = (e) => this.setState({keyword: e.target.value});
 
     submitKeyword = (e) => {
         e.preventDefault();
@@ -17,11 +17,10 @@ class SearchField extends Component{
 
     render() {
         return (
-            <MDBCol md="6">
+            <div className="search">
                 <form onSubmit={this.submitKeyword} className="form-inline mt-4 mb-4">
-                    <input
+            <TextInput icon="search"
                         name="keyword"
-                        className="form-control form-control-sm ml-3 w-75"
                         type="text"
                         placeholder="Search"
                         aria-label="Search"
@@ -29,9 +28,10 @@ class SearchField extends Component{
                         onChange={this.onChange}
                     />
                 </form>
-            </MDBCol>
+            </div>
         );
     }
 }
 
 export default SearchField;
+
