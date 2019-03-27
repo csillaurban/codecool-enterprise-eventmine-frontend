@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import EventCard from "./EventCard";
+import EventCard from "../../components/EventCard/EventCard";
 import {Link} from 'react-router-dom';
 
 class Events extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import Events from "../Events";
+import Events from "../Events/Events";
 
 class EventMine extends Component {
     render() {
