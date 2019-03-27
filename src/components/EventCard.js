@@ -3,20 +3,12 @@ import { MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBCard, MDBCardB
 import {Link} from "react-router-dom";
 
 
-class EventCard extends Component {
-
-    sendEvent = (e) => {
-        this.props.getEvent(this.props.event);
-        e.stopPropagation();
-    };
-
-    render() {
+const eventCard = (props) => {
         return (
-            <Link to={'/' + this.props.event.id} onClick={this.sendEvent}>
                 <MDBCol >
                     <MDBCard className="ticket">
                         <MDBCardBody>
-                            <MDBCardTitle className="text-left">{this.props.event.name}</MDBCardTitle>
+                            <MDBCardTitle className="text-left">{props.name}</MDBCardTitle>
                             <MDBCardText>
                                 <MDBTable borderless responsive >
                                     <MDBTableHead>
@@ -29,10 +21,10 @@ class EventCard extends Component {
                                     </MDBTableHead>
                                     <MDBTableBody>
                                         <tr>
-                                            <td>{this.props.event.location}</td>
-                                            <td>{this.props.event.date.slice(0, 10)}</td>
-                                            <td>{this.props.event.numOfAvailableTickets}</td>
-                                            <td>{this.props.event.price} Ft</td>
+                                            <td>{props.location}</td>
+                                            <td>{props.date.slice(0, 10)}</td>
+                                            <td>{props.numOfAvailableTickets}</td>
+                                            <td>{props.price} Ft</td>
                                         </tr>
                                     </MDBTableBody>
                                 </MDBTable>
@@ -40,10 +32,7 @@ class EventCard extends Component {
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
-            </Link>
         );
-    }
-
 }
 
-export default EventCard;
+export default eventCard;
