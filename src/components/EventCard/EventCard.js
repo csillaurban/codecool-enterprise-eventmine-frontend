@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import React from 'react';
 import {Row, Col, Card, Table} from 'react-materialize';
 import './Card.css';
 
 const eventCard = (props) => {
+    console.log("props of eventcard")
+    console.log(props)
         return (
 
             <Row>

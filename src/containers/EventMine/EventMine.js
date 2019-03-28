@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Redirect, Switch} from 'react-router-dom';
+import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import Events from "../Events/Events";
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import {Row, Col} from 'react-materialize';
@@ -10,35 +10,10 @@ import SearchResults from "../SearchResults/SearchResults";
 import axios from "axios";
 
 class EventMine extends Component {
-    state = {
-        keyword: '',
-        isSubmitted: false,
-        results: []
-    }
-
-    sendKeyword = (keyword) => {
-        axios.get(`http://localhost:8080/events/search/${keyword}`)
-            .then(res => {
-                console.log("Response: ");
-                console.log(res.data);
-                    this.setState({keyword: keyword});
-                    this.setState({results: res.data});
-                    this.setState({isSubmitted: true})
-                }
-            )
-    };
-
 
     render() {
-        let redirect = null;
-        let searchResults = null;
-        if(this.state.isSubmitted) {
-            searchResults = [...this.state.results];
-            redirect = <Redirect to="/search/results" />
-            console.log("search results");
-            console.log(searchResults)
-        }
         return (
+
             <div className="EventMine">
                 <Row>
                     <Col>
@@ -52,18 +27,20 @@ class EventMine extends Component {
                 </Row>
                 <Row>
                     <Col>
-                    <Search
-                        sendKeyword={this.sendKeyword}/>
+                    <Search />
                     </Col>
                 </Row>
                 <Row>
+                    <Col>
+                        <Route path="/search/results" component={SearchResults}/>
+
+                    </Col>
+                </Row>
+
+                <Row>
                     <Col s={7}>
-                        {redirect}
-                        <Switch>
-                            <Route path="/" exact component={Events}/>
-                            <Route path="/events/:id" exact component={Event}/>
-                            <Route path="/search/results" exact render={(props) => <SearchResults search={searchResults}/>}/>
-                        </Switch>
+                            <Route exact path="/"  component={Events}/>
+                            <Route path={"/events/:id"}  component={Event}/>
                     </Col>
                     <Col s={5}>
                         <p>some other content</p>
@@ -74,7 +51,7 @@ class EventMine extends Component {
     }
 }
 
-export default EventMine;
+export default withRouter(EventMine);
 
 
 {/**/}

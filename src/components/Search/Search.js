@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
 import {TextInput} from 'react-materialize';
 import './Search.css';
+import axios from "axios";
+import {Redirect} from 'react-router';
 
 class Search extends Component{
     state = {
         keyword: '',
+        results: [],
     };
 
     handleChange = (e) => this.setState({keyword: e.target.value});
 
     submitKeyword = (e) => {
         e.preventDefault();
-        this.props.sendKeyword(this.state.keyword);
-        this.setState({keyword: ''});
+        const keyword = this.state.keyword;
+        axios.get(`http://localhost:8080/events/search/${keyword}`)
+            .then(res => {
+                console.log("Response from search");
+                console.log(res.data);
+                    this.setState({results: res.data})
+                }
+            )
     };
 
     render() {
@@ -28,6 +37,12 @@ class Search extends Component{
                         onChange={this.handleChange}
                     />
                 </form>
+                {this.state.results.length > 0 ?
+                    <Redirect to={{
+                        pathname: '/search/results',
+                        state: { search: this.state.results}
+                    }} /> : null
+                }
             </div>
         );
     }
