@@ -11,7 +11,6 @@ const eventCard = (props) => {
                     <Card
                         className="ticket"
                         title={props.name}
-                        actions={[<a />,<a />]}
                     >
                         <Table>
                             <thead>

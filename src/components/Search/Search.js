@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import {TextInput} from 'react-materialize';
 import './Search.css';
+import axios from "axios";
+import {Link} from "react-router-dom";
+import EventCard from "../../containers/Events/Events";
 
-class SearchField extends Component{
+class Search extends Component{
     state = {
-        keyword: ''
+        keyword: '',
+        results: [],
+        isKeyword: false
     };
 
     onChange = (e) => this.setState({keyword: e.target.value});
 
-    submitKeyword = (e) => {
-        e.preventDefault();
-        this.props.sendKeyword(this.state.keyword);
-        this.setState({keyword: ''});
-    };
+    submitKeyword = (keyword) => {
+        this.props.sendKeyword(keyword);
+    }
 
     render() {
         return (
@@ -33,5 +36,12 @@ class SearchField extends Component{
     }
 }
 
-export default SearchField;
+export default Search;
 
+
+
+{/*submitKeyword = (e) => {
+    e.preventDefault();
+    this.props.sendKeyword(this.state.keyword);
+    this.setState({keyword: ''});
+};*/}
