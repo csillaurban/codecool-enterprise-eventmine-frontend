@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
 import {TextInput} from 'react-materialize';
 import './Search.css';
-import axios from "axios";
-import {Link} from "react-router-dom";
-import EventCard from "../../containers/Events/Events";
 
 class Search extends Component{
     state = {
         keyword: '',
-        results: [],
-        isKeyword: false
     };
 
-    onChange = (e) => this.setState({keyword: e.target.value});
+    handleChange = (e) => this.setState({keyword: e.target.value});
 
-    submitKeyword = (keyword) => {
-        this.props.sendKeyword(keyword);
-    }
+    submitKeyword = (e) => {
+        e.preventDefault();
+        this.props.sendKeyword(this.state.keyword);
+        this.setState({keyword: ''});
+    };
 
     render() {
         return (
@@ -28,7 +25,7 @@ class Search extends Component{
                         placeholder="Search"
                         aria-label="Search"
                         value={this.state.keyword}
-                        onChange={this.onChange}
+                        onChange={this.handleChange}
                     />
                 </form>
             </div>
@@ -38,10 +35,3 @@ class Search extends Component{
 
 export default Search;
 
-
-
-{/*submitKeyword = (e) => {
-    e.preventDefault();
-    this.props.sendKeyword(this.state.keyword);
-    this.setState({keyword: ''});
-};*/}

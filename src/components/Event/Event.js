@@ -12,8 +12,6 @@ class Event extends Component {
             if(!this.state.loadedEvent || (this.state.loadedEvent && this.state.loadedEvent.id != this.props.match.params.id)) {
                 axios.get('http://localhost:8080/events/' + this.props.match.params.id)
                     .then(response => {
-                        console.log(response.data);
-                        console.log(this.props);
                         this.setState({loadedEvent: response.data})
                     })
             }

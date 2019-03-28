@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, Switch} from 'react-router-dom';
 import Events from "../Events/Events";
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import {Row, Col} from 'react-materialize';
@@ -12,16 +12,32 @@ import axios from "axios";
 class EventMine extends Component {
     state = {
         keyword: '',
-        isKeyword: false
+        isSubmitted: false,
+        results: []
     }
 
     sendKeyword = (keyword) => {
-        this.setState({keyword: keyword});
-        this.setState({isKeyword: true})
-    }
+        axios.get(`http://localhost:8080/events/search/${keyword}`)
+            .then(res => {
+                console.log("Response: ");
+                console.log(res.data);
+                    this.setState({keyword: keyword});
+                    this.setState({results: res.data});
+                    this.setState({isSubmitted: true})
+                }
+            )
+    };
 
 
     render() {
+        let redirect = null;
+        let searchResults = null;
+        if(this.state.isSubmitted) {
+            searchResults = [...this.state.results];
+            redirect = <Redirect to="/search/results" />
+            console.log("search results");
+            console.log(searchResults)
+        }
         return (
             <div className="EventMine">
                 <Row>
@@ -42,8 +58,12 @@ class EventMine extends Component {
                 </Row>
                 <Row>
                     <Col s={7}>
-                <Route path="/" exact component={Events}/>
-                <Route path="/events/:id" exact component={Event}/>
+                        {redirect}
+                        <Switch>
+                            <Route path="/" exact component={Events}/>
+                            <Route path="/events/:id" exact component={Event}/>
+                            <Route path="/search/results" exact render={(props) => <SearchResults search={searchResults}/>}/>
+                        </Switch>
                     </Col>
                     <Col s={5}>
                         <p>some other content</p>
@@ -57,10 +77,4 @@ class EventMine extends Component {
 export default EventMine;
 
 
-{/*componentDidMount() {
-    axios.get(`http://localhost:8080/events/search/${this.state.keyword}`)
-        .then(res => {
-            this.setState({results: res.data});
-            this.setState({isKeyword: true})
-        })
-}*/}
+{/**/}

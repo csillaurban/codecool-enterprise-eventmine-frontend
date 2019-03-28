@@ -20,7 +20,6 @@ class Events extends Component {
     render() {
         let events = <p style={{textAlign: 'center'}}>Something went wrong</p>;
         if(!this.state.error) {
-            console.log(this.state.events);
             events = this.state.events.map(
                 event => {
                     return (
