@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import EventCard from "../Events/Events";
+import CardForSearch from '../../components/Search/CardForSearch';
 
 class SearchResults extends Component {
 
@@ -13,14 +14,11 @@ class SearchResults extends Component {
             console.log("There are results")
             results = searchResult.map(result => {
                     return (
-                        <EventCard
+                        <Link to={'/events/' + result.id} key={result.id}>
+                        <CardForSearch
                             name={result.name}
-                            location={result.location}
-                            date={result.date}
-                            numOfAvailableTickets={result.numOfAvailableTickets}
-                            price={result.price}
-                            key={result.id}
                         />
+                        </Link>
                     );
                 }
             );

@@ -31,15 +31,10 @@ class EventMine extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col s={7}>
                         <Route path="/search/results" component={SearchResults}/>
 
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col s={7}>
-                            <Route exact path="/"  component={Events}/>
+                        <Route exact path="/"  component={Events}/>
                             <Route path={"/events/:id"}  component={Event}/>
                     </Col>
                     <Col s={5}>
