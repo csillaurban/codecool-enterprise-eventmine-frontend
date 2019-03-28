@@ -25,11 +25,7 @@ class Events extends Component {
                     return (
                         <Link to={'/events/' + event.id} key={event.id}>
                         <EventCard
-                            name={event.name}
-                            location={event.location}
-                            date={event.date}
-                            numOfAvailableTickets={event.numOfAvailableTickets}
-                            price={event.price}
+                            event={{...event}}
                         />
                         </Link>
                     );

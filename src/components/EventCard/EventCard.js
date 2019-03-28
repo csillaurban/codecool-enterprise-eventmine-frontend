@@ -3,15 +3,13 @@ import {Row, Col, Card, Table} from 'react-materialize';
 import './Card.css';
 
 const eventCard = (props) => {
-    console.log("props of eventcard")
-    console.log(props)
         return (
 
             <Row>
                 <Col m={6} s={12}>
                     <Card
                         className="ticket"
-                        title={props.name}
+                        title={props.event.name}
                     >
                         <Table>
                             <thead>
@@ -24,10 +22,10 @@ const eventCard = (props) => {
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{props.location}</td>
-                                <td>{props.date.slice(0, 10)}</td>
-                                <td>{props.numOfAvailableTickets}</td>
-                                <td>{props.price} Ft</td>
+                                <td>{props.event.location}</td>
+                                <td>{props.event.date.slice(0, 10)}</td>
+                                <td>{props.event.numOfAvailableTickets}</td>
+                                <td>{props.event.price} Ft</td>
                             </tr>
                             </tbody>
                         </Table>
