@@ -17,8 +17,6 @@ class Search extends Component{
         const keyword = this.state.keyword;
         axios.get(`http://localhost:8080/events/search/${keyword}`)
             .then(res => {
-                console.log("Response from search");
-                console.log(res.data);
                     this.setState({results: res.data})
                 }
             )

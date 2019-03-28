@@ -4,7 +4,6 @@ import './Card.css';
 
 const eventCard = (props) => {
         return (
-
             <Row>
                 <Col m={6} s={12}>
                     <Card

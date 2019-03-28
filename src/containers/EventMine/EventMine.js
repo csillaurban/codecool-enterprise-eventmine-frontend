@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Events from "../Events/Events";
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import {Row, Col} from 'react-materialize';
@@ -42,4 +42,4 @@ class EventMine extends Component {
     }
 }
 
-export default withRouter(EventMine);
+export default EventMine;
