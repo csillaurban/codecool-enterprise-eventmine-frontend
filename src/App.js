@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import EventMine from "./containers/EventMine/EventMine";
-import Auth from './authService/Auth';
+import history from './history';
 
-
-const auth = new Auth();
 
 class App extends Component {
 
   render() {
-
       return (
-          <BrowserRouter>
+          <BrowserRouter history={history}>
             <div className="App">
                 <EventMine/>
             </div>
