@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Search from '../../components/Search/Search';
 import Event from '../../components/Event/Event';
 import SearchResults from "../SearchResults/SearchResults";
+import Auth from "../../authService/Auth";
 
 class EventMine extends Component {
     render() {
