@@ -6,7 +6,6 @@ import Auth from './authService/Auth';
 
 
 const auth = new Auth();
-auth.login();
 
 class App extends Component {
 
