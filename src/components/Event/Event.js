@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../EventCard/Card.css';
-import {Card, Table} from 'react-materialize';
+import {Card, Col, Table} from 'react-materialize';
 import axios from 'axios';
 
 class Event extends Component {
@@ -23,11 +23,13 @@ class Event extends Component {
         let post = <p>Something's happening</p>
         if(this.state.loadedEvent) {
             post = (
+                <Col m={6} s={12}>
+                <div className="container">
                 <div className="event center-align">
                     <div className="row">
                         <div className="col s12 m6">
                             <div className="card #ffffff white">
-                                <div className="card-content #90caf9 blue lighten-3">
+                                <div className="card-content #ffffff white">
                                     <span className="card-title">{this.state.loadedEvent.name}</span>
                                     <Table>
                                         <thead>
@@ -48,7 +50,7 @@ class Event extends Component {
                                         </tbody>
                                     </Table>
                                     <button className="btn waves-effect waves-light" type="submit" name="action">Buy
-                                        <i className="material-icons add_circle">send</i>
+                                        <i className="material-icons left">add_circle</i>
                                     </button>
                                 </div>
                                 <div className="card-action">
@@ -58,6 +60,8 @@ class Event extends Component {
                         </div>
                     </div>
                 </div>
+                </div>
+                </Col>
             )
         }
         return post;
