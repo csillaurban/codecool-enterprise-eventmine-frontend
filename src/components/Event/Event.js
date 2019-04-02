@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../EventCard/Card.css';
+import {Card, Table} from 'react-materialize';
 import axios from 'axios';
 
 class Event extends Component {
@@ -22,8 +23,40 @@ class Event extends Component {
         let post = <p>Something's happening</p>
         if(this.state.loadedEvent) {
             post = (
-                <div className="Event">
-                    <h1>{this.state.loadedEvent.name}</h1>
+                <div className="event center-align">
+                    <div className="row">
+                        <div className="col s12 m6">
+                            <div className="card #ffffff white">
+                                <div className="card-content #90caf9 blue lighten-3">
+                                    <span className="card-title">{this.state.loadedEvent.name}</span>
+                                    <Table>
+                                        <thead>
+                                        <tr>
+                                            <th>Location</th>
+                                            <th>Date</th>
+                                            <th>Remaining Tickets</th>
+                                            <th>Price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{this.state.loadedEvent.location}</td>
+                                            <td>{this.state.loadedEvent.date.slice(0, 10)}</td>
+                                            <td>{this.state.loadedEvent.numOfAvailableTickets}</td>
+                                            <td>{this.state.loadedEvent.price} Ft</td>
+                                        </tr>
+                                        </tbody>
+                                    </Table>
+                                    <button className="btn waves-effect waves-light" type="submit" name="action">Buy
+                                        <i className="material-icons add_circle">send</i>
+                                    </button>
+                                </div>
+                                <div className="card-action">
+                                    <a href={"/"}>Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         }
