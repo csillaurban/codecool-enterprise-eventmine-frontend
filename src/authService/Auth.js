@@ -88,7 +88,7 @@ class Auth {
         sessionStorage.removeItem('accessToken');
 
         // navigate to the home route
-        history.replace('/home');
+        history.replace('/');
     }
 
     isAuthenticated() {

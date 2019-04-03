@@ -6,8 +6,6 @@ import Header from "../../components/Header/Header";
 
 class SearchResults extends Component {
     render() {
-        console.log(window.history.forward())
-
         let searchResult= this.props.location.state.search;
         console.log(searchResult);
         let results = <p>something went wrong</p>

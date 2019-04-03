@@ -2,7 +2,19 @@ import React, {Component} from 'react';
 
 
 class Login extends Component {
+    state = {
+        isLoggedIn: false
+    }
 
+    checkIfAccessToken = () => {
+        if(sessionStorage.getItem('accessToken')) {
+            this.setState({isLoggedIn: true})
+        }
+    }
+
+    timeout() {
+        setTimeout(this.checkIfAccessToken, 1000); // Here
+    }
 
     goTo(route) {
         this.props.history.replace(`/${route}`)
@@ -10,6 +22,7 @@ class Login extends Component {
 
     login() {
         this.props.auth.login();
+
     }
 
     logout() {
@@ -17,44 +30,51 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        this.timeout();
 
         const { renewSession } = this.props.auth;
 
-        if (localStorage.getItem('isLoggedIn') === 'true') {
+        if (sessionStorage.getItem('isLoggedIn') === 'true') {
             renewSession();
         }
+
+    }
+
+    redirect = () => {
+        let path = "/";
+        this.props.history.push(path);
+        this.setState({isLoggedIn: false})
+        sessionStorage.removeItem('isLoggedIn');
+        sessionStorage.removeItem('accessToken');
     }
 
     render() {
-        const { isAuthenticated } = this.props.auth;
-
-
-        return (
-            <div>
-
-                        {
-                            !isAuthenticated() && (
-                                <button
-                                    type='submit'
-                                    onClick={this.login.bind(this)}
-                                >
-                                    Log In
-                                </button>
-                            )
-                        }
-                        {
-                            isAuthenticated() && (
-                                <button
-                                    type='submit'
-                                    onClick={this.logout.bind(this)}
-                                >
-                                    Log Out
-                                </button>
-                            )
-                        }
-
-            </div>
-        );
+        console.log(this.props)
+        let loggedIn = this.state.isLoggedIn;
+        console.log(this.state.isLoggedIn)
+        if(!loggedIn) {
+            return (
+                <div>
+                <button
+                    type='submit'
+                    onClick={this.login.bind(this)}
+                >
+                    Log In
+                </button>
+                </div>
+            );
+        } else {
+            return(
+                <div>
+                <button
+                    type='submit'
+                    onClick={this.redirect}
+                >
+                    Log Out
+                </button>
+                </div>
+            );
+        }
     }
 }
 
