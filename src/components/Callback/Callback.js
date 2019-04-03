@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Events from "../../containers/Events/Events";
 import Header from "../Header/Header";
-import {Row, Col} from "react-materialize";
+import {Row, Col, Preloader} from "react-materialize";
 
 class Callback extends Component {
     state = {
@@ -27,7 +27,11 @@ class Callback extends Component {
         if(!token) {
             return (
                 <div>
-                    <h1>Loading...</h1>
+                    <Row>
+                    <Col s={4}>
+                        <Preloader flashing />
+                    </Col>
+                    </Row>
                 </div>
             );
         } else {

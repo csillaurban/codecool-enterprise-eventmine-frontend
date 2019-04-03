@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Icon, Button} from 'react-materialize';
 
 
 class Login extends Component {
@@ -55,23 +56,25 @@ class Login extends Component {
         if(!loggedIn) {
             return (
                 <div>
-                <button
-                    type='submit'
-                    onClick={this.login.bind(this)}
-                >
-                    Log In
-                </button>
+
+                    <Button type="submit" onClick={this.login.bind(this)} waves="light" style={{marginRight: '5px'}}>
+                        Login
+                        <Icon left>
+                            login
+                        </Icon>
+                    </Button>
+
                 </div>
             );
         } else {
             return(
                 <div>
-                <button
-                    type='submit'
-                    onClick={this.redirect}
-                >
-                    Log Out
-                </button>
+                    <Button type="submit" onClick={this.redirect} waves="light" style={{marginRight: '5px'}} >
+                        Logout
+                        <Icon left>
+                            logout
+                        </Icon>
+                    </Button>
                 </div>
             );
         }
