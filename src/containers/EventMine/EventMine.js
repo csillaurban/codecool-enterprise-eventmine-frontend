@@ -5,6 +5,7 @@ import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import {Row, Col} from 'react-materialize';
 import Navbar from '../../components/Navbar/Navbar';
 import Search from '../../components/Search/Search';
+import SeatMap from '../../components/SeatMap/SeatMap';
 import Event from '../../components/Event/Event';
 import SearchResults from "../SearchResults/SearchResults";
 
@@ -31,7 +32,7 @@ class EventMine extends Component {
                     <Col s={7}>
                         <Route path="/search/results" component={SearchResults}/>
                         <Route exact path="/"  component={Events}/>
-                        <Route path={"/events/:id"}  component={Event}/>
+                        <Route path={"/events/:id"}  component={SeatMap}/>
                     </Col>
                     <Col s={5}>
                         <p>some other content</p>
