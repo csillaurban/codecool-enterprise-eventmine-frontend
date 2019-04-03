@@ -1,33 +1,49 @@
 import React, {Component} from 'react';
 import '../EventCard/Card.css';
 import axios from 'axios';
+import {API_URLS} from "../../authService/api_urls";
 
 class Event extends Component {
     state = {
-        loadedEvent: null
+        loadedEvent: null,
     }
 
+
     componentDidMount() {
-        if(this.props.match.params.id) {
-            if(!this.state.loadedEvent || (this.state.loadedEvent && this.state.loadedEvent.id != this.props.match.params.id)) {
-                axios.get('http://localhost:8080/events/' + this.props.match.params.id)
-                    .then(response => {
-                        this.setState({loadedEvent: response.data})
-                    })
+        if(sessionStorage.getItem('accessToken')) {
+            console.log("token")
+            if (this.props.match.params.id) {
+                if (!this.state.loadedEvent || (this.state.loadedEvent && this.state.loadedEvent.id != this.props.match.params.id)) {
+                    const token = sessionStorage.getItem('accessToken');
+                    const headers = {
+                        'Authorization': `Bearer ${token}`,
+                        'Access-Control-Allow-Origin': 'http://localhost:8080'
+                    };
+                    axios.get('http://localhost:8080/event/' + this.props.match.params.id, {headers})
+                        .then(response => {
+                            console.log(response.data);
+                            this.setState({loadedEvent: response.data})
+                        })
+                }
             }
+        } else {
+            console.log("not token")
         }
     }
 
     render() {
-        let post = <p>Something's happening</p>
         if(this.state.loadedEvent) {
-            post = (
+            return (
                 <div className="Event">
                     <h1>{this.state.loadedEvent.name}</h1>
                 </div>
-            )
+            );
+        } else {
+            return (
+                <h2>Event is not loaded</h2>
+            );
+
         }
-        return post;
     }
 
 }

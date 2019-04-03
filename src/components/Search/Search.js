@@ -10,12 +10,15 @@ class Search extends Component{
         results: [],
     };
 
+
     handleChange = (e) => this.setState({keyword: e.target.value});
 
     submitKeyword = (e) => {
         e.preventDefault();
+        const token = sessionStorage.getItem('accessToken');
+        const headers = { 'Authorization': `Bearer ${token}`, 'Access-Control-Allow-Origin': 'http://localhost:8080'};
         const keyword = this.state.keyword;
-        axios.get(`http://localhost:8080/events/search/${keyword}`)
+        axios.get(`http://localhost:8080/events/${keyword}`, { headers })
             .then(res => {
                     this.setState({results: res.data})
                 }
@@ -23,6 +26,7 @@ class Search extends Component{
     };
 
     render() {
+
         return (
             <div className="search">
                 <form onSubmit={this.submitKeyword} className="form-inline mt-4 mb-4">
