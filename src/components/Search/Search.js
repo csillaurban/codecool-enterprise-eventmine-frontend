@@ -26,7 +26,6 @@ class Search extends Component{
     };
 
     render() {
-
         return (
             <div className="search">
                 <form onSubmit={this.submitKeyword} className="form-inline mt-4 mb-4">

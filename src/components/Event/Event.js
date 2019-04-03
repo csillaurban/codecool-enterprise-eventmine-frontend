@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../EventCard/Card.css';
 import axios from 'axios';
 import {API_URLS} from "../../authService/api_urls";
+import Header from "../Header/Header";
 
 class Event extends Component {
     state = {
@@ -35,6 +36,7 @@ class Event extends Component {
         if(this.state.loadedEvent) {
             return (
                 <div className="Event">
+                    <Header />
                     <h1>{this.state.loadedEvent.name}</h1>
                 </div>
             );

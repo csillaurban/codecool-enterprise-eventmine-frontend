@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Events from "../../containers/Events/Events";
+import Header from "../Header/Header";
+import {Row, Col} from "react-materialize";
 
 class Callback extends Component {
     state = {
@@ -31,7 +33,15 @@ class Callback extends Component {
         } else {
             return (
                 <div>
+                    <Header/>
+                    <Row>
+                        <Col>
                     <Events auth={this.props.auth} />
+                        </Col>
+                        <Col>
+                            <h2>Filter events: under construction</h2>
+                        </Col>
+                    </Row>
                 </div>
             );
         }

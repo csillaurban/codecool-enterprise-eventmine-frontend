@@ -21,47 +21,18 @@ const handleAuthentication = (nextState, replace) => {
 
 class EventMine extends Component {
 
-
-
-
     render() {
         return (
             <div className="EventMine">
-                <Row>
-                    <Col>
                         <Route path="/" render={(props) => <Login auth={auth} {...props} />} />
 
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Navbar/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <ImageSlider />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Search />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col s={7}>
                         <Route path="/search/results" component={SearchResults}/>
-                        <Route path="/events/:id"  component={Event} />
+                        <Route path="/events/:id"  render={(props) => < Event {...props} auth={auth}/>} />
 
                         <Route path="/callback" render={(props) => {
                             handleAuthentication(props);
                             return <Callback {...props} auth={auth} />
                         }}/>
-                    </Col>
-                    <Col s={5}>
-                        <p>some other content</p>
-                    </Col>
-                </Row>
             </div>
         );
     }

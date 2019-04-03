@@ -8,7 +8,7 @@ class NavigationBar extends Component {
         return (
             <div className="navbar">
                 <Navbar brand={<a/>} alignLinks="left">
-                    <NavItem href={"/"} >
+                    <NavItem href={"/home"} >
                         Menu
                     </NavItem>
                     <NavItem href="/">

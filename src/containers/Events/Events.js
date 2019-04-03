@@ -3,6 +3,7 @@ import axios from "axios";
 import EventCard from "../../components/EventCard/EventCard";
 import {Link} from 'react-router-dom';
 import {API_URLS} from "../../authService/api_urls";
+import Header from "../../components/Header/Header";
 
 class Events extends Component {
     state = {
