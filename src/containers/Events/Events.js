@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import EventCard from "../../components/EventCard/EventCard";
 import {Link} from 'react-router-dom';
+import {API_URLS} from "../../authService/api_urls";
 
 class Events extends Component {
     state = {
@@ -10,7 +11,9 @@ class Events extends Component {
     };
 
     componentDidMount() {
-        axios.get('http://localhost:8080/events/list/popularity')
+        const { getAccessToken } = this.props.auth;
+        const headers = { 'Authorization': `Bearer ${getAccessToken()}`, 'Access-Control-Allow-Origin': 'http://localhost:8080',}
+        axios.get(API_URLS.events, { headers })
             .then(res => this.setState({events: res.data}))
             .catch(error => {
                 this.setState({error: true})

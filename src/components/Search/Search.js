@@ -3,6 +3,7 @@ import {TextInput} from 'react-materialize';
 import './Search.css';
 import axios from "axios";
 import {Redirect} from 'react-router';
+import {API_URLS} from "../../authService/api_urls";
 
 class Search extends Component{
     state = {
@@ -14,8 +15,10 @@ class Search extends Component{
 
     submitKeyword = (e) => {
         e.preventDefault();
+        const { getAccessToken } = this.props.auth;
+        const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
         const keyword = this.state.keyword;
-        axios.get(`http://localhost:8080/events/search/${keyword}`)
+        axios.get(API_URLS.search + {keyword}, { headers })
             .then(res => {
                     this.setState({results: res.data})
                 }

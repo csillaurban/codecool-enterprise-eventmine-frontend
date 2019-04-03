@@ -1,5 +1,6 @@
 import { AUTH_CONFIG } from "./auth0_variables";
 import history from '../history';
+import { WebAuth } from 'auth0-js';
 
 class Auth {
     accessToken;
@@ -16,22 +17,25 @@ class Auth {
         this.renewSession = this.renewSession.bind(this);
     }
 
-    auth0 = new auth0.WebAuth({
+    auth0 = new WebAuth({
         domain: AUTH_CONFIG.domain,
         clientID: AUTH_CONFIG.clientId,
         redirectUri: AUTH_CONFIG.callbackUrl,
         audience: AUTH_CONFIG.audience,
         responseType: 'token id_token',
-        scope: 'openid'
+        scope: 'openid profile'
     });
 
-    login() {
+    login = () => {
         this.auth0.authorize();
     }
 
-    handleAuthentication() {
+    handleAuthentication = () => {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
+                console.log("in handle auth")
+                console.log(authResult.accessToken)
+                this.accessToken = authResult.accessToken;
                 this.setSession(authResult);
             } else if (err) {
                 history.replace('/home');
@@ -41,29 +45,29 @@ class Auth {
         });
     }
 
-    getAccessToken() {
+    getAccessToken = () => {
         return this.accessToken;
     }
 
-    getIdToken() {
+    getIdToken = () => {
         return this.idToken;
     }
 
-    setSession(authResult) {
+    setSession = (authResult) => {
         // Set isLoggedIn flag in localStorage
-        localStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('isLoggedIn', 'true');
 
         // Set the time that the access token will expire at
         let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
         this.accessToken = authResult.accessToken;
         this.idToken = authResult.idToken;
         this.expiresAt = expiresAt;
-        localStorage.setItem('accessToken', this.accessToken);
+        sessionStorage.setItem('accessToken', this.accessToken);
         // navigate to the home route
         history.replace('/home');
     }
 
-    renewSession() {
+    renewSession = () => {
         this.auth0.checkSession({}, (err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
@@ -75,24 +79,30 @@ class Auth {
         });
     }
 
-    logout() {
+    logout = () => {
         // Remove tokens and expiry time
         this.accessToken = null;
         this.idToken = null;
         this.expiresAt = 0;
 
         // Remove isLoggedIn flag from localStorage
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('accessToken');
+        sessionStorage.removeItem('isLoggedIn');
+        sessionStorage.removeItem('accessToken');
         // navigate to the home route
         history.replace('/home');
     }
 
-    isAuthenticated() {
+    isAuthenticated = () => {
         // Check whether the current time is past the
         // access token's expiry time
         let expiresAt = this.expiresAt;
-        return new Date().getTime() < expiresAt;
+        if(new Date().getTime() < expiresAt) {
+            console.log("auth")
+            return true;
+        } else {
+            console.log("not auth")
+            return false;
+        }
     }
 
 

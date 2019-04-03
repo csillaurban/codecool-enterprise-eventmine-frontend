@@ -7,23 +7,29 @@ import Navbar from '../../components/Navbar/Navbar';
 import Search from '../../components/Search/Search';
 import Event from '../../components/Event/Event';
 import SearchResults from "../SearchResults/SearchResults";
-import Callback from "../../callback/Callback";
 import Auth from "../../authService/Auth";
+import Login from "../../components/Login/Login";
 
 const auth = new Auth();
 
-
 class EventMine extends Component {
 
-    handleAuthentication = ({location}) => {
-        if (/access_token|id_token|error/.test(location.hash)) {
+    handleAuthentication = (nextState, replace) => {
+        if (/access_token|id_token|error/.test(nextState.location.hash)) {
             auth.handleAuthentication();
         }
     }
 
+
     render() {
         return (
             <div className="EventMine">
+                <Row>
+                    <Col>
+                        <Route path="/" render={(props) => <Login auth={auth} {...props} />} />
+
+                    </Col>
+                </Row>
                 <Row>
                     <Col>
                         <Navbar/>
@@ -42,11 +48,10 @@ class EventMine extends Component {
                 <Row>
                     <Col s={7}>
                         <Route path="/search/results" render={(props) => <SearchResults auth={auth} {...props} />}/>
-                        <Route exact path="/"  render={(props) => <Events auth={auth} {...props} />}/>
                         <Route path={"/events/:id"}  render={(props) => <Event auth={auth} {...props} />}/>
                         <Route path="/callback" render={(props) => {
                             this.handleAuthentication(props);
-                            return <Callback {...props} />
+                            return <Events {...props} auth={auth} />
                         }}/>
                     </Col>
                     <Col s={5}>
