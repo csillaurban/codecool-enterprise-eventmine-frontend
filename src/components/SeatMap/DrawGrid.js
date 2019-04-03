@@ -5,7 +5,7 @@ import AvailableList from  './AvailableList';
 class DrawGrid extends Component {
     render() {
         return (
-            <div className="container">
+            <div className="container right-align">
                 <table className="grid">
                     <tbody>
                     <tr>
@@ -16,8 +16,8 @@ class DrawGrid extends Component {
                     </tr>
                     </tbody>
                 </table>
-                <AvailableList available = { this.props.available } />
-                <ReservedList reserved = { this.props.reserved } />
+                {/*<AvailableList available = { this.props.available } />*/}
+                {/*<ReservedList reserved = { this.props.reserved } />*/}
             </div>
         );
     }

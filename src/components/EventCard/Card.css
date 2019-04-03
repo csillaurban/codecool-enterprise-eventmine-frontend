@@ -1,5 +1,14 @@
 .ticket {
     margin: auto;
     color: teal;
-    width: 90%;
+    width: 100%;
+}
+
+td, th {
+    padding: 30px 65px;
+    padding-left: 70px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 5px;
 }

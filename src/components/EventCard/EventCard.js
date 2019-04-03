@@ -5,7 +5,7 @@ import './Card.css';
 const eventCard = (props) => {
         return (
             <Row>
-                <Col m={6} s={12}>
+                <Col m={8} s={12}>
                     <Card
                         className="ticket"
                         title={props.event.name}

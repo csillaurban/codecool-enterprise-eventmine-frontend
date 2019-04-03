@@ -29,14 +29,14 @@ class EventMine extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col s={7}>
+                    <Col l={3}>
                         <Route path="/search/results" component={SearchResults}/>
                         <Route exact path="/"  component={Events}/>
-                        <Route path={"/events/:id"}  component={SeatMap}/>
+                        <Route path={"/events/:id"}  component={Event}/>
                     </Col>
-                    <Col s={5}>
-                        <p>some other content</p>
-                    </Col>
+                <Col>
+                    <Route path={"/events/:id"}  component={SeatMap}/>
+                </Col>
                 </Row>
             </div>
         );

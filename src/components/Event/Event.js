@@ -25,7 +25,7 @@ class Event extends Component {
             post = (
                 <Col m={6} s={12}>
                 <div className="container">
-                <div className="event center-align">
+                <div className="event left-align">
                     <div className="row">
                         <div className="col s12 m6">
                             <div className="card #ffffff white">

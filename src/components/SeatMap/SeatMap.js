@@ -8,20 +8,27 @@ class SeatMap extends Component {
                 super();
                 this.state = {
                         seat: [
-                                'F1','F2','F3',
-                                'F4','F5','F6',
-                                'M1','M2','M3',
-                                'M4','M5','M6',
-                                'B1','B2','B3',
-                                'B4','B5','B6'
+                                '1','2','3',
+                                '4','5','6',
+                                '7','8','9',
+                                '10','11','12',
+                                '13','14','15',
+                                '16','17','18',
+                                '19','20','21',
+                                '22','23','24',
+
                         ],
                         seatAvailable: [
-                                'F1','F2','F3',
-                                'F4','F5','F6',
-                                'M1','M2','M3',
-                                'M4','M5','M6',
-                                'B1','B2','B3',
-                                'B4','B5','B6'
+                                '1','2','3',
+                                '4','5','6',
+                                '7','8','9',
+                                '10','11','12',
+                                '13','14','15',
+                                '16','17','18',
+                                '19','20','21',
+                                '22','23','24',
+
+
                         ],
                         seatReserved: []
                 }
@@ -43,7 +50,7 @@ class SeatMap extends Component {
     render() {
         return (
             <div>
-                    <h1>Seat Reservation System</h1>
+                    <h3>Seat Reservation System</h3>
                     <DrawGrid
                         seat = { this.state.seat }
                         available = { this.state.seatAvailable }
