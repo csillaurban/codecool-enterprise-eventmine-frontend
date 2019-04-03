@@ -35,7 +35,7 @@ class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
             } else if (err) {
-                history.replace('/home');
+                history.replace('/');
                 console.log(err);
                 alert(`Error: ${err.error}. Check the console for further details.`);
             }
@@ -50,18 +50,13 @@ class Auth {
         return this.idToken;
     }
 
-
     setSession(authResult) {
-        // Set isLoggedIn flag in localStorage
         sessionStorage.setItem('isLoggedIn', 'true');
-
-        // Set the time that the access token will expire at
         let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
         this.accessToken = authResult.accessToken;
         this.idToken = authResult.idToken;
         this.expiresAt = expiresAt;
         sessionStorage.setItem('accessToken', this.accessToken);
-        // navigate to the home route
         history.replace('/home');
     }
 
@@ -78,27 +73,18 @@ class Auth {
     }
 
     logout() {
-        // Remove tokens and expiry time
         this.accessToken = null;
         this.idToken = null;
         this.expiresAt = 0;
-
-        // Remove isLoggedIn flag from localStorage
         sessionStorage.removeItem('isLoggedIn');
         sessionStorage.removeItem('accessToken');
-
-        // navigate to the home route
         history.replace('/');
     }
 
     isAuthenticated() {
-        // Check whether the current time is past the
-        // access token's expiry time
         let expiresAt = this.expiresAt;
         return new Date().getTime() < expiresAt;
     }
-
-
 }
 
 export default Auth;

@@ -37,7 +37,7 @@ class Callback extends Component {
         } else {
             return (
                 <div>
-                    <Header/>
+                    <Header auth={this.props.auth}/>
                     <Row>
                         <Col>
                     <Events auth={this.props.auth} />

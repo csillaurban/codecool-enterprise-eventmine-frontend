@@ -3,7 +3,6 @@ import axios from "axios";
 import EventCard from "../../components/EventCard/EventCard";
 import {Link} from 'react-router-dom';
 import {API_URLS} from "../../authService/api_urls";
-import Header from "../../components/Header/Header";
 
 class Events extends Component {
     state = {
@@ -13,9 +12,7 @@ class Events extends Component {
 
     componentDidMount() {
         const { getAccessToken } = this.props.auth;
-
             const headers = { 'Authorization': `Bearer ${getAccessToken()}`, 'Access-Control-Allow-Origin': 'http://localhost:8080',}
-
             axios.get(API_URLS.events, {headers})
                 .then(res => {
                     this.setState({events: res.data});

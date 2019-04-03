@@ -9,7 +9,7 @@ class Header extends Component {
             <div>
                 <Navbar />
                 <ImageSlider/>
-                <Search/>
+                <Search />
             </div>
         );
     }

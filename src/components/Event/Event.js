@@ -20,15 +20,13 @@ class Event extends Component {
                         'Authorization': `Bearer ${token}`,
                         'Access-Control-Allow-Origin': 'http://localhost:8080'
                     };
-                    axios.get('http://localhost:8080/event/' + this.props.match.params.id, {headers})
+                    axios.get(API_URLS.event + this.props.match.params.id, {headers})
                         .then(response => {
                             console.log(response.data);
                             this.setState({loadedEvent: response.data})
                         })
                 }
             }
-        } else {
-            console.log("not token")
         }
     }
 
@@ -44,10 +42,8 @@ class Event extends Component {
             return (
                 <h2>Event is not loaded</h2>
             );
-
         }
     }
-
 }
 
 export default Event;
