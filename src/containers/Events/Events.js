@@ -12,12 +12,16 @@ class Events extends Component {
 
     componentDidMount() {
         const { getAccessToken } = this.props.auth;
-        const headers = { 'Authorization': `Bearer ${getAccessToken()}`, 'Access-Control-Allow-Origin': 'http://localhost:8080',}
-        axios.get(API_URLS.events, { headers })
-            .then(res => this.setState({events: res.data}))
-            .catch(error => {
-                this.setState({error: true})
-            })
+
+            const headers = { 'Authorization': `Bearer ${getAccessToken()}`, 'Access-Control-Allow-Origin': 'http://localhost:8080',}
+
+            axios.get(API_URLS.events, {headers})
+                .then(res => {
+                    this.setState({events: res.data});
+                })
+                .catch(error => {
+                    this.setState({error: true})
+                })
     }
 
     render() {

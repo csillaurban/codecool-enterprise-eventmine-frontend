@@ -9,16 +9,19 @@ import Event from '../../components/Event/Event';
 import SearchResults from "../SearchResults/SearchResults";
 import Auth from "../../authService/Auth";
 import Login from "../../components/Login/Login";
+import Callback from "../../components/Callback/Callback";
 
 const auth = new Auth();
 
+const handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+        auth.handleAuthentication();
+    }
+}
+
 class EventMine extends Component {
 
-    handleAuthentication = (nextState, replace) => {
-        if (/access_token|id_token|error/.test(nextState.location.hash)) {
-            auth.handleAuthentication();
-        }
-    }
+
 
 
     render() {
@@ -47,11 +50,12 @@ class EventMine extends Component {
                 </Row>
                 <Row>
                     <Col s={7}>
-                        <Route path="/search/results" render={(props) => <SearchResults auth={auth} {...props} />}/>
-                        <Route path={"/events/:id"}  render={(props) => <Event auth={auth} {...props} />}/>
+                        <Route path="/search/results" component={SearchResults}/>
+                        <Route path="/events/:id"  component={Event} />
+
                         <Route path="/callback" render={(props) => {
-                            this.handleAuthentication(props);
-                            return <Events {...props} auth={auth} />
+                            handleAuthentication(props);
+                            return <Callback {...props} auth={auth} />
                         }}/>
                     </Col>
                     <Col s={5}>

@@ -3,7 +3,6 @@ import {TextInput} from 'react-materialize';
 import './Search.css';
 import axios from "axios";
 import {Redirect} from 'react-router';
-import {API_URLS} from "../../authService/api_urls";
 
 class Search extends Component{
     state = {
@@ -11,14 +10,15 @@ class Search extends Component{
         results: [],
     };
 
+
     handleChange = (e) => this.setState({keyword: e.target.value});
 
     submitKeyword = (e) => {
         e.preventDefault();
-        const { getAccessToken } = this.props.auth;
-        const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+        const token = sessionStorage.getItem('accessToken');
+        const headers = { 'Authorization': `Bearer ${token}`, 'Access-Control-Allow-Origin': 'http://localhost:8080'};
         const keyword = this.state.keyword;
-        axios.get(API_URLS.search + {keyword}, { headers })
+        axios.get(`http://localhost:8080/events/${keyword}`, { headers })
             .then(res => {
                     this.setState({results: res.data})
                 }
@@ -26,6 +26,7 @@ class Search extends Component{
     };
 
     render() {
+
         return (
             <div className="search">
                 <form onSubmit={this.submitKeyword} className="form-inline mt-4 mb-4">

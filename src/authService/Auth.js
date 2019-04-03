@@ -26,16 +26,13 @@ class Auth {
         scope: 'openid profile'
     });
 
-    login = () => {
+    login() {
         this.auth0.authorize();
     }
 
-    handleAuthentication = () => {
+    handleAuthentication() {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
-                console.log("in handle auth")
-                console.log(authResult.accessToken)
-                this.accessToken = authResult.accessToken;
                 this.setSession(authResult);
             } else if (err) {
                 history.replace('/home');
@@ -45,15 +42,16 @@ class Auth {
         });
     }
 
-    getAccessToken = () => {
+    getAccessToken() {
         return this.accessToken;
     }
 
-    getIdToken = () => {
+    getIdToken() {
         return this.idToken;
     }
 
-    setSession = (authResult) => {
+
+    setSession(authResult) {
         // Set isLoggedIn flag in localStorage
         sessionStorage.setItem('isLoggedIn', 'true');
 
@@ -67,7 +65,7 @@ class Auth {
         history.replace('/home');
     }
 
-    renewSession = () => {
+    renewSession() {
         this.auth0.checkSession({}, (err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
@@ -79,7 +77,7 @@ class Auth {
         });
     }
 
-    logout = () => {
+    logout() {
         // Remove tokens and expiry time
         this.accessToken = null;
         this.idToken = null;
@@ -88,21 +86,16 @@ class Auth {
         // Remove isLoggedIn flag from localStorage
         sessionStorage.removeItem('isLoggedIn');
         sessionStorage.removeItem('accessToken');
+
         // navigate to the home route
         history.replace('/home');
     }
 
-    isAuthenticated = () => {
+    isAuthenticated() {
         // Check whether the current time is past the
         // access token's expiry time
         let expiresAt = this.expiresAt;
-        if(new Date().getTime() < expiresAt) {
-            console.log("auth")
-            return true;
-        } else {
-            console.log("not auth")
-            return false;
-        }
+        return new Date().getTime() < expiresAt;
     }
 
 
