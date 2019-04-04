@@ -16,17 +16,30 @@ const handleAuthentication = (nextState, replace) => {
 
 class EventMine extends Component {
     render() {
-        return (
-            <div className="EventMine">
-                <Route path="/" render={(props) => <Login auth={auth} {...props} />} />
-                <Route path="/search/results" component={SearchResults}/>
-                <Route path="/events/:id"  render={(props) => < Event {...props} auth={auth}/>} />
-                <Route path="/callback" render={(props) => {
-                    handleAuthentication(props);
-                    return <Callback {...props} auth={auth} />
-                }}/>
-            </div>
-        );
+        if(!sessionStorage.getItem('accessToken')) {
+            return (
+                <div className="EventMine">
+                    <Route path="/" render={(props) => <Login auth={auth} {...props} />}/>
+                    <Route path="/search/results" component={SearchResults}/>
+                    <Route path="/events/:id" render={(props) => < Event {...props} auth={auth}/>}/>
+                    <Route path="/home" render={(props) => {
+                        handleAuthentication(props);
+                        return <Callback {...props} auth={auth}/>
+                    }}/>
+                </div>
+            );
+        } else {
+            return (
+                <div className="EventMine">
+                    <Route path="/" render={(props) => <Login auth={auth} {...props} />}/>
+                    <Route path="/search/results" component={SearchResults}/>
+                    <Route path="/events/:id" render={(props) => < Event {...props} auth={auth}/>}/>
+                    <Route path="/home" render={(props) => {
+                        return <Callback {...props} auth={auth}/>
+                    }}/>
+                </div>
+            );
+        }
     }
 }
 

@@ -8,7 +8,7 @@ class NavigationBar extends Component {
             <div className="navbar">
                 <Navbar brand={<a/>} alignLinks="left">
                     <NavItem href={"/home"} >
-                        Menu
+                        Home
                     </NavItem>
                     <NavItem href="/">
                         Concerts
