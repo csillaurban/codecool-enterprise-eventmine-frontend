@@ -1,28 +1,21 @@
 import React, {Component} from 'react';
 import {Navbar, NavItem} from 'react-materialize';
 import './Navbar.css';
+import {Link} from 'react-router-dom';
 
 
 
 
 class NavigationBar extends Component {
-
-    redirect = () => {
-        let path = "/home";
-        if(sessionStorage.getItem('accessToken')) {
-            this.props.history.push(path);
-        } else {
-            this.props.history.push("/");
-        }
-    }
-
     render () {
         return (
             <div className="navbar">
                 <Navbar brand={<a/>} alignLinks="left">
+                    <Link to="/home">
                     <NavItem onclick={this.redirect}>
                         Home
                     </NavItem>
+                    </Link>
                     <NavItem href="/">
                         Concerts
                     </NavItem>
