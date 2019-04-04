@@ -22,7 +22,7 @@ class EventMine extends Component {
                     <Route path="/" render={(props) => <Login auth={auth} {...props} />}/>
                     <Route path="/search/results" component={SearchResults}/>
                     <Route path="/events/:id" render={(props) => < Event {...props} auth={auth}/>}/>
-                    <Route path="/home" render={(props) => {
+                    <Route path="/callback" render={(props) => {
                         handleAuthentication(props);
                         return <Callback {...props} auth={auth}/>
                     }}/>
