@@ -1,3 +1,19 @@
+The first project of Codecool Enterprise framework. 
+This project is a part of a ticket finder web application and its development lasted three sprints (three weeks) with a team of three members.
+This repository contains the front-end of the project.
+
+First Sprint:
+-Develop the basic features of the application: listing and searching events
+
+Second Sprint:
+-Refactor the project
+-Creating a page for every event
+
+Third Sprint:
+-Develop authentication with auth0
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
